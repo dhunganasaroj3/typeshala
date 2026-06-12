@@ -8,5 +8,6 @@ export default defineConfig(({ command }) => ({
   plugins: [react(), tailwindcss()],
   test: {
     environment: 'node',
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
   },
 }))

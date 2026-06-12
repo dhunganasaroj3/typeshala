@@ -2,7 +2,7 @@
 
 export type Lang = 'en' | 'ne'
 export type Mode = 'time' | 'words' | 'lesson' | 'game'
-export type View = 'test' | 'lessons' | 'games' | 'stats' | 'settings'
+export type View = 'test' | 'adaptive' | 'lessons' | 'games' | 'stats' | 'settings'
 
 // ---------- lessons ----------
 

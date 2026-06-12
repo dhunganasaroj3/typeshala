@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import CelebrationLayer from './components/CelebrationLayer'
 import TestView from './components/TestView'
+import AdaptiveView from './components/adaptive/AdaptiveView'
 import LessonsView from './components/lessons/LessonsView'
 import GamesView from './components/games/GamesView'
 import StatsView from './components/stats/StatsView'
@@ -25,6 +26,7 @@ export default function App() {
 
       <main className="flex-1 flex flex-col">
         {view === 'test' && <TestView />}
+        {view === 'adaptive' && <AdaptiveView />}
         {view === 'lessons' && <LessonsView />}
         {view === 'games' && <GamesView />}
         {view === 'stats' && <StatsView />}

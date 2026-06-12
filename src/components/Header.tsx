@@ -11,6 +11,7 @@ import {
 
 const NAV: Array<{ id: View; label: string }> = [
   { id: 'test', label: 'Test' },
+  { id: 'adaptive', label: 'Adaptive' },
   { id: 'lessons', label: 'Lessons' },
   { id: 'games', label: 'Games' },
   { id: 'stats', label: 'Stats' },
