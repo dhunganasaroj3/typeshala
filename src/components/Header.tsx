@@ -1,6 +1,7 @@
-import type { View } from '../types'
+import type { Lang, View } from '../types'
 import { useUI } from '../store/useUI'
 import { useProgress } from '../store/useProgress'
+import { useSettings } from '../store/useSettings'
 import {
   DAILY_GOAL_XP,
   levelForXp,
@@ -17,6 +18,40 @@ const NAV: Array<{ id: View; label: string }> = [
   { id: 'stats', label: 'Stats' },
   { id: 'settings', label: 'Settings' },
 ]
+
+const LANGS: Array<{ id: Lang; short: string; full: string }> = [
+  { id: 'en', short: 'EN', full: 'English' },
+  { id: 'ne', short: 'ने', full: 'नेपाली' },
+]
+
+/** Always-visible system language toggle. Drives the whole app via useSettings().lang. */
+function LangToggle() {
+  const lang = useSettings((s) => s.lang)
+  const setLang = useSettings((s) => s.setLang)
+  return (
+    <div
+      className="flex items-center rounded-full bg-surface p-0.5 text-xs"
+      role="group"
+      aria-label="App language"
+      title="Switch app language"
+    >
+      {LANGS.map((l) => (
+        <button
+          key={l.id}
+          type="button"
+          onClick={() => setLang(l.id)}
+          aria-pressed={lang === l.id}
+          title={l.full}
+          className={`px-2.5 py-1 rounded-full leading-none transition-colors ${
+            lang === l.id ? 'bg-main text-bg font-semibold' : 'text-sub hover:text-text'
+          } ${l.id === 'ne' ? 'font-devanagari' : ''}`}
+        >
+          {l.short}
+        </button>
+      ))}
+    </div>
+  )
+}
 
 /** Circular daily-goal progress ring. */
 function GoalRing({ value, goal }: { value: number; goal: number }) {
@@ -97,6 +132,9 @@ export default function Header() {
       </nav>
 
       <div className="ml-auto flex items-center gap-5">
+        {/* system language toggle */}
+        <LangToggle />
+
         {/* streak */}
         <div className="flex items-center gap-1.5 text-streak" title={`Streak: ${streak.current} days`}>
           <span className="text-lg leading-none">🔥</span>
