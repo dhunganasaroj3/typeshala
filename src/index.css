@@ -1,0 +1,141 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/noto-sans-devanagari';
+
+/* ---------- theme tokens (defaults = Danphe Dark) ---------- */
+:root {
+  --bg: #0e1525;
+  --surface: #1a2336;
+  --text: #e6edf7;
+  --sub: #7d8aa5;
+  --main: #2dd4bf;
+  --caret: #2dd4bf;
+  --error: #f87171;
+  --success: #4ade80;
+  --xp: #facc15;
+  --streak: #fb923c;
+}
+
+[data-theme='himal-light'] {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1d2433;
+  --sub: #6b7689;
+  --main: #0e7490;
+  --caret: #0e7490;
+  --error: #dc2626;
+  --success: #16a34a;
+  --xp: #ca8a04;
+  --streak: #ea580c;
+}
+
+[data-theme='mitho-momo'] {
+  --bg: #2b1517;
+  --surface: #3d2023;
+  --text: #fbeee4;
+  --sub: #b08d84;
+  --main: #f97362;
+  --caret: #f97362;
+  --error: #ff5470;
+  --success: #8fd16a;
+  --xp: #ffd166;
+  --streak: #ff9248;
+}
+
+[data-theme='sagarmatha'] {
+  --bg: #0b1929;
+  --surface: #14283f;
+  --text: #ddeeff;
+  --sub: #6e8bab;
+  --main: #7dd3fc;
+  --caret: #7dd3fc;
+  --error: #fb7185;
+  --success: #6ee7b7;
+  --xp: #fde047;
+  --streak: #fdba74;
+}
+
+[data-theme='gruvbox'] {
+  --bg: #282828;
+  --surface: #3c3836;
+  --text: #ebdbb2;
+  --sub: #928374;
+  --main: #fabd2f;
+  --caret: #fabd2f;
+  --error: #fb4934;
+  --success: #b8bb26;
+  --xp: #fabd2f;
+  --streak: #fe8019;
+}
+
+[data-theme='terminal']  {
+  --bg: #0a0f0a;
+  --surface: #111a11;
+  --text: #c8facc;
+  --sub: #4c7a52;
+  --main: #22c55e;
+  --caret: #22c55e;
+  --error: #ef4444;
+  --success: #86efac;
+  --xp: #a3e635;
+  --streak: #fbbf24;
+}
+
+/* expose tokens to tailwind v4 utilities: bg-bg, text-main, border-surface, ... */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-sub: var(--sub);
+  --color-main: var(--main);
+  --color-caret: var(--caret);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-xp: var(--xp);
+  --color-streak: var(--streak);
+  --font-devanagari: 'Noto Sans Devanagari Variable', 'Noto Sans Devanagari', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-monospace, 'JetBrains Mono', 'Fira Code', Menlo, monospace;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.font-devanagari {
+  font-family: 'Noto Sans Devanagari Variable', 'Noto Sans Devanagari', sans-serif;
+}
+
+/* smooth caret blink */
+@keyframes caret-blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0.15; }
+}
+.caret-blink {
+  animation: caret-blink 1.1s ease-in-out infinite;
+}
+
+/* celebration toast entrance */
+@keyframes ts-slide-in {
+  from { opacity: 0; transform: translateX(16px) scale(0.98); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* focus mode: typing dims chrome */
+.focus-dim {
+  opacity: 0.15;
+  transition: opacity 300ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
